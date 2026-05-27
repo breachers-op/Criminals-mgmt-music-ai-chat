@@ -47,8 +47,88 @@
 
 ʏᴏᴜ ɴᴇᴇᴅ ᴀ SESSION_STRING ꜰᴏʀ ᴛʜᴇ ᴜsᴇʀʙᴏᴛ ᴛᴏ ᴊᴏɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛs. ᴜsᴇ ᴛʜɪs sᴄʀɪᴘᴛ
 (ʀᴜɴ ɪɴ ᴛᴇʀᴍᴜx ᴏʀ ᴘᴄ):
+To make the generator work directly from your repository (so users don't have to copy-paste code), you should use a **One-Line Command**. 
 
-pkg install python -y && pip install pyrogram tgcrypto && curl -sL https://raw.githubusercontent.com/breachers-op/Criminals-mgmt-music-ai-chat/main/generate.py -o generate.py && python generate.py
+This command will automatically install the requirements, download the script from your GitHub, and run it.
+
+### 1. The One-Line Command for your README
+Copy this into your `README.md` so users can just copy and paste it into Termux:
+
+```bash
+pkg install python clang -y && python -m pip install hydrogram tgcrypto && curl -sL https://raw.githubusercontent.com/breachers-op/Criminals-mgmt-music-ai-chat/main/generate.py -o generate.py && python generate.py
+```
+
+---
+
+### 2. Full Guide for your Repo (Copy this)
+
+Save this as a new file called `SESSION.md` in your repo or paste it into your `README.md`:
+
+## 🔑 Generate Session String (Termux)
+
+If you are using **Termux** (Python 3.13), use this specific command to avoid errors. This will install the necessary tools and run the generator directly from this repository.
+
+**Step 1: Copy and paste this into Termux:**
+```bash
+pkg install python clang binutils -y && python -m pip install hydrogram tgcrypto && curl -sL https://raw.githubusercontent.com/breachers-op/Criminals-mgmt-music-ai-chat/main/generate.py -o generate.py && python generate.py
+```
+
+**Step 2: Follow the prompts:**
+1. Enter your `API_ID` and `API_HASH` ([Get them here](https://my.telegram.org)).
+2. Enter your Phone Number (e.g., `+919876543210`).
+3. Enter the OTP code sent to your Telegram app.
+4. Your **Session String** will be printed on the screen and sent to your **Saved Messages**.
+
+---
+
+### 3. How to make this work (Action Required)
+For that command to work, you **MUST** ensure that the file `generate.py` is in the main folder of your GitHub repository (`breachers-op/Criminals-mgmt-music-ai-chat`).
+
+**Upload this specific code as `generate.py` to your repo:**
+```python
+import asyncio
+import os
+try:
+    from hydrogram import Client
+except ImportError:
+    print("Installing Hydrogram...")
+    os.system("pip install hydrogram tgcrypto")
+    from hydrogram import Client
+
+async def generate_session():
+    print("\n--- Criminals Session Generator (Repo Version) ---")
+    
+    api_id = int(input("Enter API_ID: "))
+    api_hash = input("Enter API_HASH: ")
+
+    # This client handles Python 3.13 and large API IDs
+    app = Client(
+        name="CriminalsGen",
+        api_id=api_id,
+        api_hash=api_hash,
+        in_memory=True
+    )
+
+    async with app:
+        session = await app.export_session_string()
+        print(f"\n✅ YOUR SESSION STRING:\n\n{session}\n")
+        
+        try:
+            await app.send_message("me", f"**Criminals Session String:**\n\n`{session}`")
+            print("✅ Sent to Saved Messages.")
+        except:
+            print("⚠️ Could not send to Saved Messages. Copy it from above.")
+
+if __name__ == "__main__":
+    asyncio.run(generate_session())
+```
+
+### Why this is the best way:
+1. **User Friendly:** They only have to copy **one line**.
+2. **Direct:** It always pulls the latest version from your GitHub.
+3. **Automated:** It fixes the `ModuleNotFoundError` by installing `hydrogram` automatically before starting.
+4. **Clean:** It doesn't clutter their Termux with extra folders; it just runs the script.
+
 
 🖥️ ᴠᴘs ᴅᴇᴘʟᴏʏᴍᴇɴᴛ
 
