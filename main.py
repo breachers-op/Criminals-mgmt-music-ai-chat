@@ -1,18 +1,26 @@
 import asyncio
-from pyrogram import Client
-from pytgcalls import PyTgCalls
-from config import *
+from hydrogram import idle
+from Criminals import app, assistant
+from flask import Flask
+from threading import Thread
 
-app = Client("Bot", API_ID, API_HASH, bot_token=BOT_TOKEN, plugins=dict(root="modules"))
-userbot = Client("Assistant", API_ID, API_HASH, session_string=SESSION_STRING)
-call_py = PyTgCalls(userbot)
+# Flask for Health Checks on Railway/Koyeb
+web = Flask(__name__)
+@web.route('/')
+def home(): return "Bot is Alive!"
+
+def run_web():
+    web.run(host="0.0.0.0", port=8080)
 
 async def start_bot():
+    print("Starting Main Bot...")
     await app.start()
-    await userbot.start()
-    await call_py.start()
-    print("✅ Bot is live and stylish!")
-    await asyncio.Event().wait()
+    if assistant:
+        print("Starting Assistant...")
+        await assistant.start()
+    print("Everything is Online!")
+    await idle()
 
 if __name__ == "__main__":
+    Thread(target=run_web).start()
     asyncio.get_event_loop().run_until_complete(start_bot())
