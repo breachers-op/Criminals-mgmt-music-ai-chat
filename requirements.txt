@@ -1,0 +1,6 @@
+pyrotgfork
+pytgcalls
+motor
+dnspython
+google-generativeai
+python-dotenv
