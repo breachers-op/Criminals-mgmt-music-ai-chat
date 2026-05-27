@@ -11,6 +11,8 @@
 ᴄʀᴇᴀᴛɪɴɢ ɪᴛ.
 
 # DEPLOY ON RAILWAY
+[![Deploy on Railway](https://railway.com)](https://railway.com/deploy)
+
 <a href="https://railway.app/new/template?template=https://github.com/breachers-op/Criminals-mgmt-music-ai-chat.git">
   <img src="https://railway.app/button.svg" alt="Deploy on Railway">
 </a>
