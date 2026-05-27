@@ -11,6 +11,7 @@
 ᴄʀᴇᴀᴛɪɴɢ ɪᴛ.
 
 Deploy on Railway
+[https://railway.app/new/template?template=https://github.com/breachers-op/Criminal-smgmt-musics-ai-chat
 
 Deploy to Koyeb
 
