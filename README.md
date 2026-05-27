@@ -11,10 +11,7 @@
 ᴄʀᴇᴀᴛɪɴɢ ɪᴛ.
 
 # DEPLOY ON Railway 
-<a href="https://railway.app/new/template?template=https://github.com/breachers-op/Criminals-mgmt-music-ai-chat.git">
-  <img src="https://railway.app/button.svg" alt="Deploy on Railway">
-</a>
-
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/breachers-op/Criminals-mgmt-music-ai-chat.git&envs=API_KEY,DATABASE_URL,BOT_TOKEN)
 
 Deploy to Koyeb
 
