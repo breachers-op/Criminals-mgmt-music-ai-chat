@@ -1,8 +1,4 @@
-This README.md is designed to make your GitHub repository look professional. It
-includes the deployment buttons, a detailed environment variable guide, and the
-session generation script.
-
-🤖 sᴜᴘʀᴇᴍᴇ ᴀssɪsᴛᴀɴᴛ ʙᴏᴛ
+🤖 criminals ᴀssɪsᴛᴀɴᴛ ʙᴏᴛ
 
 ᴀ ᴘᴏᴡᴇʀꜰᴜʟ, sᴛʏʟɪsʜ, ᴀɴᴅ ᴜsᴇʀ-ꜰʀɪᴇɴᴅʟʏ ᴛᴇʟᴇɢʀᴀᴍ ʙᴏᴛ ʙᴜɪʟᴛ ᴡɪᴛʜ ᴘʏʀᴏᴛɢꜰᴏʀᴋ ᴀɴᴅ
 ᴍᴏɴɢᴏᴅʙ. ɪᴛ ʜᴀɴᴅʟᴇs ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ, ᴠᴄ ᴍᴜsɪᴄ sᴛʀᴇᴀᴍɪɴɢ, ᴀɴᴅ ᴀɪ ᴄʜᴀᴛʙᴏᴛ
@@ -53,7 +49,7 @@ session.py
 
 from pyrogram import Client
 
-print("--- Supreme Session Generator ---")
+print("--- Criminals session generator ---")
 api_id = int(input("Enter API_ID: "))
 api_hash = input("Enter API_HASH: ")
 
