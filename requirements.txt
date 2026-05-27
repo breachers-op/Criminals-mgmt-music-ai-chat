@@ -1,6 +1,8 @@
-pyrotgfork
-pytgcalls
+hydrogram
+tgcrypto
+pytgcalls==1.1.2
 motor
-dnspython
-google-generativeai
+pymongo
+flask
 python-dotenv
+google-generativeai
