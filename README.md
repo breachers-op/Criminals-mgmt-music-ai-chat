@@ -72,8 +72,8 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install python3-pip ffmpeg git -y
 
 # Clone your Repo
-git clone https://github.com/YOURUSERNAME/YOURREPO
-cd YOURREPO
+git clone https://github.com/breachers-op/Criminals-mgmt-music-ai-chat.git
+cd Criminals-mgmt-music-ai-chat
 
 # Install Requirements
 pip3 install -r requirements.txt
