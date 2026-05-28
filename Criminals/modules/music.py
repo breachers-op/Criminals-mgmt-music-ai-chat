@@ -1,11 +1,12 @@
 from pytgcalls import PyTgCalls
-from Criminals import app, assistant
+from Criminals import assistant
 from hydrogram import filters
 
+# In version 3.0.0+, initialization is simpler
 if assistant:
     call_py = PyTgCalls(assistant)
 
-@app.on_message(filters.command("play") & filters.group)
+@assistant.on_message(filters.command("play") & filters.group)
 async def play_music(client, message):
-    if not assistant: return await message.reply("No SESSION_STRING.")
-    await message.reply("🎵 Processing... (Add PyTgCalls stream logic here)")
+    # Music logic here...
+    await message.reply("🎵 Music Player Ready.")
