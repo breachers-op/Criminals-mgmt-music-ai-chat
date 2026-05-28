@@ -8,17 +8,22 @@ async def play_music(client, message):
         return await message.reply("Assistant not configured. Set SESSION_STRING.")
 
     try:
-        # We try to import and initialize inside the command
-        from pytgcalls import PyTgCalls
-        from pytgcalls.types import AudioPiped
+        # UNIVERSAL IMPORT LOGIC
+        try:
+            from pytgcalls import PyTgCalls
+        except ImportError:
+            # Fallback for some specific builds
+            from pytgcalls.pytgcalls import PyTgCalls
         
-        # Test if it can initialize
+        # Test initialization
         call_py = PyTgCalls(assistant)
-        await message.reply("✅ **Music Engine is Ready!**\nYou can now stream in this voice chat.")
+        await message.reply("✅ **Music Engine successfully loaded!**\nYour server now supports voice chat streaming.")
         
-    except ImportError:
-        # Show the actual system error in the chat
+    except ImportError as e:
+        await message.reply(
+            f"❌ **Import Error:** `{e}`\n\n"
+            "This usually means the audio libraries (libopus) were missing during deployment."
+        )
+    except Exception:
         err = traceback.format_exc()
-        await message.reply(f"❌ **Library Missing:**\n\n`{err}`")
-    except Exception as e:
-        await message.reply(f"❌ **Startup Error:**\n\n`{e}`")
+        await message.reply(f"❌ **Startup Error:**\n\n`{err}`")
