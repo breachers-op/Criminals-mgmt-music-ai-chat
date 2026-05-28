@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: criminals-bot
+    runtime: docker
+    plan: free
+    region: ohio # You can change this to your preferred region
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: SESSION_STRING
+        sync: false
+      - key: MONGO_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: SUDO_USERS
+        sync: false
+      - key: PORT
+        value: 10000
+    # This keeps the bot alive using the Flask server in your main.py
+    healthCheckPath: /
