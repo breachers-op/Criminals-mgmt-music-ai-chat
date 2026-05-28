@@ -1,6 +1,6 @@
 hydrogram
 tgcrypto
-pytgcalls==1.1.2
+pytgcalls==2.1.0
 motor
 pymongo
 flask
