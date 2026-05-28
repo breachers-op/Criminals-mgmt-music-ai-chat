@@ -1,25 +1,33 @@
 import os
-import asyncio
+import threading
 from flask import Flask
-from threading import Thread
-from hydrogram import idle
-from Criminals import app, assistant
 
-# 1. SETUP WEB SERVER IMMEDIATELY
+# 1. START WEB SERVER FIRST (INSTANTLY)
+# We do this before any other imports to ensure the port opens immediately.
 web = Flask(__name__)
 
 @web.route('/')
 def home():
-    return "Bot is Online"
+    return "Criminals Bot is Online"
 
 def run_web():
-    # Render and Railway provide 'PORT'. Default to 8080 if not found.
+    # Use the PORT Render gives us, or default to 10000
     port = int(os.environ.get("PORT", 10000))
-    # '0.0.0.0' is REQUIRED for Render/Railway
-    web.run(host="0.0.0.0", port=port)
+    print(f"--- Starting Health Check Server on Port {port} ---")
+    web.run(host='0.0.0.0', port=port)
 
-# 2. BOT STARTUP LOGIC
+# Start the thread immediately
+thread = threading.Thread(target=run_web)
+thread.daemon = True
+thread.start()
+
+# 2. NOW IMPORT THE HEAVY STUFF
+import asyncio
+from hydrogram import idle
+from Criminals import app, assistant
+
 async def start_bot():
+    print("--- Connecting to Telegram... ---")
     try:
         await app.start()
         if assistant:
@@ -27,15 +35,8 @@ async def start_bot():
         print("--- Criminals Bot & Assistant Online ---")
         await idle()
     except Exception as e:
-        print(f"CRITICAL ERROR: {e}")
+        print(f"CRITICAL STARTUP ERROR: {e}")
 
 if __name__ == "__main__":
-    # START WEB SERVER IN BACKGROUND FIRST
-    # This tells Render "I am alive" immediately
-    t = Thread(target=run_web)
-    t.daemon = True
-    t.start()
-    
-    # NOW START THE BOT
     loop = asyncio.get_event_loop()
     loop.run_until_complete(start_bot())
