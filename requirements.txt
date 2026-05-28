@@ -1,6 +1,5 @@
 hydrogram
 tgcrypto
-ntgcalls==3.0.0.dev0
 pytgcalls==3.0.0.dev24
 motor
 pymongo
