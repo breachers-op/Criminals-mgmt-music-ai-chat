@@ -6,3 +6,4 @@ pymongo
 flask
 python-dotenv
 google-generativeai
+certifi
