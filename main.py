@@ -1,42 +1,47 @@
 import os
 import threading
+import asyncio
 from flask import Flask
+from hydrogram import idle
 
-# 1. START WEB SERVER FIRST (INSTANTLY)
-# We do this before any other imports to ensure the port opens immediately.
+# --- 1. IMMEDIATE WEB SERVER ---
 web = Flask(__name__)
-
 @web.route('/')
-def home():
-    return "Criminals Bot is Online"
+def home(): return "Bot is Alive"
 
 def run_web():
-    # Use the PORT Render gives us, or default to 10000
     port = int(os.environ.get("PORT", 10000))
-    print(f"--- Starting Health Check Server on Port {port} ---")
+    print(f"[DEBUG] Flask starting on port {port}")
     web.run(host='0.0.0.0', port=port)
 
-# Start the thread immediately
-thread = threading.Thread(target=run_web)
-thread.daemon = True
-thread.start()
+threading.Thread(target=run_web, daemon=True).start()
 
-# 2. NOW IMPORT THE HEAVY STUFF
-import asyncio
-from hydrogram import idle
+# --- 2. DELAYED IMPORTS ---
+print("[DEBUG] Loading Bot Modules...")
 from Criminals import app, assistant
 
 async def start_bot():
-    print("--- Connecting to Telegram... ---")
+    print("[DEBUG] Attempting to start Main Bot...")
     try:
         await app.start()
+        print(f"[DEBUG] Main Bot started as @{(await app.get_me()).username}")
+        
         if assistant:
-            await assistant.start()
-        print("--- Criminals Bot & Assistant Online ---")
+            print("[DEBUG] Attempting to start Assistant...")
+            try:
+                await assistant.start()
+                print(f"[DEBUG] Assistant started as @{(await assistant.get_me()).username}")
+            except Exception as e:
+                print(f"[ERROR] Assistant failed to start: {e}")
+        
+        print("--- ALL SYSTEMS ONLINE: SEND A MESSAGE TO THE BOT ---")
         await idle()
     except Exception as e:
-        print(f"CRITICAL STARTUP ERROR: {e}")
+        print(f"[CRITICAL] Bot failed to start: {e}")
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(start_bot())
+    try:
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(start_bot())
+    except KeyboardInterrupt:
+        pass
